@@ -39,11 +39,11 @@ public class Batch {
         this.trainer = trainer;
     }
 
-    public int getBatchId() {
+    public Long getBatchId() {
         return batchId;
     }
 
-    public void setBatchId(int batchId) {
+    public void setBatchId(Long batchId) {
         this.batchId = batchId;
     }
 

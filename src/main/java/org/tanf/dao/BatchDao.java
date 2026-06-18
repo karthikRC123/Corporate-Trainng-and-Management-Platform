@@ -50,7 +50,7 @@ public void saveBatch(Batch batch){
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
             return session.createQuery(
-                    "FROM batch",
+                    "FROM Batch",
                     Batch.class
             ).getResultList();
 

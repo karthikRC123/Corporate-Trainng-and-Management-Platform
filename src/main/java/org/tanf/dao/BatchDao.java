@@ -6,6 +6,7 @@ import org.tanf.entities.Batch;
 import org.tanf.util.HibernateUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 public class BatchDao {
 //    •	Create Batch
@@ -25,9 +26,9 @@ public void saveBatch(Batch batch){
         e.printStackTrace();
     }
 }
-    public  Batch getBatchById(Long id){
+    public Optional<Batch> getBatchById(Long id){
         try(Session session=HibernateUtil.getSessionFactory().openSession()){
-            return session.get(Batch.class,id);
+            return Optional.ofNullable(session.get(Batch.class,id));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -46,13 +47,13 @@ public void saveBatch(Batch batch){
         }
 
     }
-    public static List<Batch> getAllBatches() {
+    public  Optional<List<Batch>> getAllBatches() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
-            return session.createQuery(
+            return Optional.ofNullable(session.createQuery(
                     "FROM Batch",
                     Batch.class
-            ).getResultList();
+            ).getResultList());
 
         } catch (Exception e) {
             throw new RuntimeException(e);
